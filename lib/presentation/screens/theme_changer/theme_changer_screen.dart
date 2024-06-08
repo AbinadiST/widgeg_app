@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:widgets_app/config/theme/app_theme.dart';
 import 'package:widgets_app/presentation/providers/theme_provider.dart';
 
 class ThemeChangerScreen extends ConsumerWidget { // para acceder al REF lo cambiamos al CONSUMERWIDGET
@@ -42,7 +43,8 @@ class _ThemeChangerView extends ConsumerWidget { // lo cambiamos por CONSUMERWID
   Widget build(BuildContext context, ref) {
 
     final List<Color> colors = ref.watch( colorListProvider );
-    final int selectedColor = ref.watch( selectedColorProvider ); // es rerefencia al código en THEME_PROVIDER/SELECTEDCOLORPROVIDER 
+    // final int selectedColor = ref.watch( selectedColorProvider ); // es rerefencia al código en THEME_PROVIDER/SELECTEDCOLORPROVIDER 
+    final int selectedColor = ref.watch( themeNotifierProvider ).selectedColor;
 
     return ListView.builder(
       itemCount: colors.length,
@@ -60,7 +62,10 @@ class _ThemeChangerView extends ConsumerWidget { // lo cambiamos por CONSUMERWID
           onChanged: (value) {
             //TODO: Notificar cambio
 
-              ref.read( selectedColorProvider.notifier ).state = index; // notificamos los cambios del CIRCULITO
+              // ref.read( selectedColorProvider.notifier ).state = index; // notificamos los cambios del CIRCULITO
+              ref.watch( themeNotifierProvider.notifier )
+              .changeColorIndex(index);
+
             },
           );
         },
