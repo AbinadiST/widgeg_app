@@ -36,4 +36,12 @@ class AppTheme{
                         //ya que en ANDROID por defecto el título se coloca a la izq y no en el centro
     )
   );
+
+  AppTheme copyWith({ //Se realiza una copia del TEMA ACTUAL //*COPYWITH = Muy utilizado en FLUTTER 
+    int? selectedColor,
+    bool? isDarkmode
+  }) => AppTheme(
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkmode: isDarkmode ?? this.isDarkmode,
+  ); 
 }

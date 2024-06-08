@@ -12,11 +12,13 @@ final isDarkmodeProvider = StateProvider((ref) => false); // STATEPROVIDER = man
 // Un simple int
 final selectedColorProvider = StateProvider((ref) => 0); // Si lo cambiamos a 1, aparecerá el CIRCULITO en la posición 1 
 
+
+
+
 // Un objeto de tipo AppTheme
 final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>( // STATENOTIFIERPROVIDER = Puede mantener el estado más complejo
-  (ref) => ThemeNotifier(),
+  (ref) => ThemeNotifier(), // THEMENOTIFIER (clase) = Es el controlador | APPTHEME = Es el estado, es una instancia
   );
-// THEMENOTIFIER (clase) = Es el controlador | APPTHEME = Es el estado, es una instancia
 //! ver video RIVERPOD - STATENOTIFIER para más info. 
 
 //Controller o Notifier
@@ -24,6 +26,16 @@ class ThemeNotifier extends StateNotifier<AppTheme> {
 
   //STATE/ESTADO = new AppTheme();  es una instancia de AppTheme
   ThemeNotifier(): super( AppTheme() );
+
+  void toggleDarkmode(){
+    state = state.copyWith( isDarkmode: !state.isDarkmode );
+
+  }
+
+  void changeColorIndex( int colorIndex ){
+
+
+  }
 
 
 }

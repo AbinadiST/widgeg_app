@@ -11,7 +11,7 @@ class ThemeChangerScreen extends ConsumerWidget { // para acceder al REF lo camb
   @override
   Widget build(BuildContext context, ref) {
 
-    final isDarkmode = ref.watch( isDarkmodeProvider ); // REF.WATCH... es para estar al pendiente de los cambios
+    final isDarkmode = ref.watch( themeNotifierProvider ).isDarkmode; // REF.WATCH... es para estar al pendiente de los cambios
 
     return Scaffold(
       appBar: AppBar(
@@ -21,8 +21,10 @@ class ThemeChangerScreen extends ConsumerWidget { // para acceder al REF lo camb
             icon: Icon( isDarkmode ? Icons.dark_mode_outlined : Icons.light_mode_outlined),
             onPressed: () {
 
-              ref.read( isDarkmodeProvider.notifier ) // Cambiamos el ícono de luna a sol
-              .update((state) => !state);
+              // ref.read( isDarkmodeProvider.notifier ) // Cambiamos el ícono de luna a sol
+              // .update((state) => !state);
+              ref.read( themeNotifierProvider.notifier )
+              .toggleDarkmode();
 
               }, 
             )
