@@ -19,14 +19,15 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) { // se puede poner sólo REF en lugar de WIDGETREF(como en códigos anteriores)
 
-    final isDarkmode = ref.watch( isDarkmodeProvider );
-    final selectedColor = ref.watch( selectedColorProvider );
+    // final isDarkmode = ref.watch( isDarkmodeProvider );
+    // final selectedColor = ref.watch( selectedColorProvider );
+    final AppTheme appTheme = ref.watch( themeNotifierProvider );
 
     return MaterialApp.router(  //agregamos el ROUTER
       title: 'Flutter Widgets',
       routerConfig: appRouter,  //APPROUTER es que configuramos con GO_ROUTER
       debugShowCheckedModeBanner: false,
-      theme: AppTheme( selectedColor: selectedColor, isDarkmode: isDarkmode ).getTheme(),
+      theme: appTheme.getTheme(),
     );
   }
 }
