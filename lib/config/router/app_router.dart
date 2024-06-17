@@ -70,7 +70,7 @@ final appRouter = GoRouter(
     ),
 
     GoRoute(
-      path : '/counter-screen',
+      path : '/counter-river',
       name: CounterScreen.name,
       builder: (context, state) => const CounterScreen(),
     ),
